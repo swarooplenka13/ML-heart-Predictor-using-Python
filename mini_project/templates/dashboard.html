@@ -1,0 +1,112 @@
+<html>
+    <head>
+      <style>
+        .foot {
+            position: relative;
+            top: 30em;
+            background-color: black;
+            height: 9em;
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        footer {
+            background: black;
+            height: 13em;
+            overflow: hidden;
+            position: relative;
+            top:3em;
+
+        }
+        .h {
+            margin-top: 4em;
+            margin-left: 1em;
+            margin-right: 1em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .boo{
+            position: relative;
+            bottom:30em;
+            margin-left:70em;
+        }
+        .boo >a{
+            text-decoration: none;
+            border: 2px solid blue;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .boo >a:hover{
+            border-color: red;
+            color: red;
+            font-weight: bold;
+        }
+        .imglog >img{
+            height: 50em;
+            width: 50em;
+            position: relative;
+            left:5em;
+        }
+        .place{
+            position: relative;
+            top:1.5em;
+            right:17em;
+            float: right;
+            font-size: x-large;
+        }
+        .pa{
+            position: relative;
+            bottom:40rem;
+        }
+        .sp{
+            position: relative;
+            bottom:7rem;
+        }
+        .mv{
+            position: relative;
+            bottom: 22em;
+        }
+        .ms{
+            height: 40vh;
+        }
+      </style>
+    </head>
+    <body>
+        <div class="ms">
+            {% extends "base1.html" %}
+            {% block title %}Youv'e logged in {% endblock %}
+            
+            {% block content %}
+            <div class="place">
+                <p>Hello  {{name}}</p>
+            </div>
+            <div class="imglog">
+                <img src="static/medicine.svg" alt="" srcset="">
+            </div>
+        <div class="pa boo">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi, veritatis. Molestiae error dignissimos culpa quo, magni, amet repellat eveniet officiis sapiente aliquam cupiditate commodi a doloribus laudantium? Cumque cupiditate maiores ad quos ducimus dignissimos provident modi suscipit cum sed. Sequi neque quaerat aperiam, sunt non quis aut excepturi doloremque officiis.
+        </div>
+        <br> <br>
+        <div class="sp">
+            <div class="boo">
+                <a href="/predictheartdisease">Get Prediction</a>
+            </div>
+            <br> <br>
+            <div class="boo">
+                <a href="/download">Download Detailed Reports</a>
+            </div>
+        </div>
+        <div class="mv">
+            <footer>
+                <div class="h">
+                    <h1 style="color:white; font-size:x-large;">Heart Disease Predictor</h1>
+                    <h2 style="color:white;"><a href="/logout" class="active" style="color:white; text-decoration:none; font-size:x-large;">Logout</a></h2>
+                    <h1 id="d" style="color:white; font-size:x-large;">All rights reserved &copy; 2022.</h1>
+                </div>
+            </footer>
+        </div>
+        {% endblock %}
+    </div>
+    </body>
+</html>

@@ -1,0 +1,272 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Heart Disease Predictor - Index</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        header {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            padding: 30px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 2px 2px 2px rgb(143, 153, 153);
+        }
+
+        header .logo {
+            color: black;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 2em;
+            padding: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header ul li {
+            list-style: none;
+            margin-left: 20px;
+
+        }
+
+        header ul li a {
+            text-decoration: none;
+            padding: 6px 15px;
+            color: black;
+            border-radius: 20px;
+        }
+
+        header ul li a:hover {
+            background: rgb(63, 29, 218);
+            color: #fff;
+            transition: 0.2s;
+        }
+
+        @media only screen and (max-width:760px) {
+            header {
+                padding: 1px;
+            }
+
+            header .logo {
+                font-size: large;
+
+            }
+
+            header ul li {
+                font-size: x-small;
+            }
+
+            header ul li a {
+                padding: 0px;
+            }
+
+            .mcon {
+                display: flex;
+                flex: 1;
+                justify-content: space-around;
+                padding: 20px;
+            }
+
+            ul>li {
+                position: relative;
+                bottom: 4px;
+                padding: 3px 2px;
+                color: #fff;
+                display: flex;
+                align-items: center;
+            }
+
+            .con2 {
+                position: relative;
+                bottom: -1px;
+                padding: 6px;
+            }
+
+            .con3 {
+                padding: 6px;
+
+                position: relative;
+                bottom: 6px;
+            }
+
+            ul>li>i,
+            ul>li>a {
+                color: white;
+                text-decoration: none;
+            }
+
+            footer {
+                background: black;
+                height: 20em;
+                overflow: hidden;
+
+            }
+
+            @media only screen and (max-width:760px) {
+                .mcon {
+                    padding: 1px 40px;
+                    margin-left: -2em;
+                    margin-top: 0.7em;
+                }
+
+                .con,
+                .con2,
+                .con3 li {
+                    font-size: x-small;
+
+                }
+
+                .con,
+                .con2,
+                .con3 li h1 {
+                    position: relative;
+                    top: 2px;
+                }
+
+            }
+        }
+
+        .foot {
+            position: relative;
+            top: 15em;
+            background-color: black;
+            height: 11em;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+
+        .foot>li {
+            color: #fff;
+            font-weight: bold;
+            list-style: none;
+            padding: 20px 20px;
+
+        }
+
+        #one {
+            font-size: large;
+
+        }
+
+        .i {
+            position: relative;
+            top: 3em;
+            left: 13em;
+        }
+
+        .i>img {
+            width: 70%;
+            height: 80%;
+        }
+        .cs1{
+            overflow: hidden;
+        }
+        #title{
+            /* position: relative;
+            top:1em;
+            left:5em;  */
+            text-align: center;
+            margin-top: 1.5em;
+        }
+        .imgbot{
+            position: relative;
+            bottom: -2em;
+            text-align: center;
+            font-size: large;
+        }
+        .boo{
+            position: relative;
+            top: 8em;
+            margin-left: 45em;
+        }
+        .boo >a{
+            text-decoration: none;
+            border: 2px solid blue;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .boo >a:hover{
+            border-color: red;
+            color: red;
+            font-weight: bold;
+        }
+        .x{
+            border:5px solid red;
+            margin-top: 1.3em;
+            font-size: large;
+            text-align: center;
+            color: red;
+            border-radius: 1em;
+        }
+    </style>
+</head>
+<div class="con1">
+    <header>
+        <a href="#" class="logo">ML HEART DISEASE PREDICT</a>
+        <ul id='scr'>
+            <li> <a href="/" class="active">Home</a> </li>
+            <li> <a href="/login" class="active">Login</a> </li>
+            <li><a href="/#">Contact us</a></li>
+        </ul>
+
+    </header>
+</div>
+{% if message %}
+<div class="alert alert-secondary x" role="alert">
+    <p>{{ message }}</p>
+</div>
+{% endif %}
+<div class="co">
+    <div class="cs1">
+        <h1 id="title">Heart Disease Predictor</h1>
+        <div class="i">
+            <img src="/static/hd.jpg" alt="" class="search">
+        </div>
+    </div>
+    <br> <br>
+    <div class="boo">
+        <a href="/register">Get Register Now</a>
+    </div>
+    <div class="imgbot">
+        <p id="description">Heart Disease Predictor is an ML model which predicts whether there's a chance of
+            getting a heart disease or not. GET YOUR PREDICTION NOW!!
+        </p>
+    </div>
+</div>
+<footer>
+    <ul class="foot">
+        <li id="one">
+            <h2>Heart Disease Predictor</h2>
+        </li>
+        <li id="sec" style="color:white; font-size:x-large;">Home</li>
+        <li id="thi" style="color:white; font-size:x-large;
+        ">Contact Us</li>
+        <li>
+            <h1 id="d" style="color:white; font-size:x-large;">All rights reserved &copy 2022.</h1>
+        </div>
+        </li>
+    </ul>
+</footer>
+</html>

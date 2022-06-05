@@ -1,0 +1,229 @@
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0;
+            /* text-align: center;
+            display: flex;
+            align-items: center; */
+            font-family: sans-serif;
+            background-image: linear-gradient(120deg, #aebae2, #bddf86);
+            min-height: 100vh;
+        }
+
+        .foot {
+            position: relative;
+            top: 30em;
+            background-color: black;
+            height: 9em;
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        footer {
+            background: black;
+            height: 13em;
+            overflow: hidden;
+
+        }
+
+        .card {
+            position: relative;
+            left: 27%;
+            background-color: #fff;
+            max-width: 650px;
+            margin: 7em 8px;
+            border-radius: 30px;
+        }
+
+        .cover {
+            background-color: #609bc2;
+            border-radius: 8px 8px 0 0;
+            padding: 3em;
+            text-align: center;
+        }
+
+        .cover h1 {
+            color: rgba(255, 255, 255, 1);
+            font-size: 2.5em;
+        }
+
+        .cover p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2em;
+            margin-top: 1em;
+        }
+
+        .content {
+            padding: 3em;
+        }
+
+        @media (max-width: 500px) {
+            .content {
+                padding: 1em 1.5em 2em;
+                margin-left: -12px;
+            }
+        }
+
+        .text-form {
+            width: 100%;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        input {
+            display: block;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 4px;
+            font: inherit;
+        }
+
+        label {
+            position: absolute;
+            top: -22px;
+            left: 5px;
+            display: inline-flex;
+            align-items: center;
+            transition: transform .25s;
+            opacity: .25s;
+        }
+
+        input:focus+label {
+            transform: translateX(26px);
+            opacity: 1;
+            transition-delay: .1s;
+        }
+
+        input::placeholder {
+            transition: opacity .25s;
+        }
+
+        input:focus ::placeholder {
+            opacity: 0;
+        }
+
+        .h {
+            margin-top: 4em;
+            margin-left: 1em;
+            margin-right: 1em;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        select {
+            width: 50% !important;
+        }
+
+        #submit {
+            display: block;
+            margin-top: 1em;
+            margin-left: auto;
+            margin-right: auto;
+            width: 350px;
+            height: 2em;
+            background-color: #6951d3 !important;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0px 2px 1px 0px #1A70AE,
+                0px -2px 1px 0px #5d96bf;
+            border-radius: 30px;
+        }
+
+        #submit:hover {
+            background-color: #1A70AE !important;
+            box-shadow: 0px 2px 1px 0px #075288,
+                0px -2px 1px 0px #269FF6;
+        }
+
+        #submit:active {
+            transform: scale(0.99);
+        }
+
+        .side-label {
+            display: inline !important;
+            font-size: 1em !important;
+        }
+
+        .space {
+            display: block;
+            margin-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% extends "base.html" %}
+    <br>
+    {% block title %}Login System{% endblock %}
+
+    {% block content %}
+
+    {% if message %}
+    <div class="alert alert-secondary" role="alert">
+        <p>{{ message }}</p>
+    </div>
+    {% endif %}
+    <div class="card">
+        <div class="cover">
+            <h1 id="title">Register Here</h1>
+            <!-- <a href="/" class="active" style="color:white; text-decoration:none;">Click Here</a> -->
+        </div>
+        <div class="content">
+            <form action="/register"method="POST" id="survey-form">
+                <!-- age	sex	cp	trestbps	chol	fbs	restecg	thalach	exang	oldpeak	slope	ca	thal -->
+                <div class="input-group">
+                    <input name="fullname"  id="inputFullName" aria-describedby="emailHelp"
+                        placeholder="Enter full name">
+                    <label for="fullname">
+                        FullName
+                    </label>
+                </div>
+                <br> <br>
+                <div class="input-group">
+                    <input name="email"  id="InputEmail" placeholder="Enter email">
+                    <label for="email">
+                        Email
+                    </label>
+                </div>
+                <br> <br>
+                <div class="input-group">
+                    <input type="password" name="password1" id="InputPassword"
+                        placeholder="password">
+                    <label for="password1">
+                        password
+                    </label>
+                </div>
+                <br> <br>
+                <div class="input-group">
+                    <input type="password" name="password2" id="InputPassword2"
+                        placeholder="Repeat Password">
+                    <label for="password2">
+                       confirm password
+                    </label>
+                </div>
+                <span class="space"></span>
+                <button type="submit" id="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="h">
+            <h1 style="color:white;font-size:x-large;">Heart Disease Predictor</h1>
+            <h2 style="color:white;"><a href="/" class="active" style="color:white; text-decoration:none; font-size:x-large;">Home</a></h2>
+            <h2 style="color:white;"><a href="/login" class="active" style="color:white; text-decoration:none; font-size:x-large;">Login</a></h2>
+            <h1 id="d" style="color:white; font-size:x-large;">All rights reserved &copy 2022.</h1>
+        </div>
+    </footer>
+
+    {% endblock %}
+</body>
+
+</html>
