@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
-heart_data = pd.read_csv('heart_disease_data.csv')
+heart_data = pd.read_csv(r'C:\Users\Administrator\Desktop\ML-heart-predictor\mini_project\heart_disease_data.csv')
 
 X = heart_data.drop(columns='target', axis=1)
 Y = heart_data['target']

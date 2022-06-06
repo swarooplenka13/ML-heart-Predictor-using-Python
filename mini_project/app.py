@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime as dt
 from email import message
 from time import time
 from flask import Flask,flash, make_response, redirect, session, url_for, request,render_template
@@ -12,7 +12,6 @@ app.secret_key = "supersecretkey"
 client = pymongo.MongoClient("mongodb+srv://swaroop:Es5BLdcibccqkAAC@cluster0.8awsvf9.mongodb.net/?retryWrites=true&w=majority")
 db = client.get_database('ml')
 records = db.register
-
 @app.route('/')
 def home():
     return render_template('index.html',message="")
@@ -35,6 +34,13 @@ def index():
          slope = request.form.get('slope')
          ca=  request.form.get('ca')
          thal= request.form.get('thal')
+         now = dt.now()
+         s=dt.isoformat(now)
+         x = calc((int(age),int(sex),int(cp),int(trestbps),int(chol),int(fbs),int(restecg),int(thalach),int(exang),float(oldpeak),int(slope),int(ca),int(thal)))
+         if x==0:
+                res="You may not have any heart disease,But maintain good health :)"
+         else:
+                res="You have the heart disease ,maintain good health!!"
          records.update_one({"email":session['email']},{
             "$push":{
                     "data":{
@@ -51,17 +57,12 @@ def index():
                         "slope" : slope,
                         "ca": ca,
                         "thal": thal,
-                        "date":datetime.now(),
-                        # "time":datetime.now().time
+                        "date":s,
+                        "res":res
                     },   
             },
         })
         #  records.delete_one({"email":session['email']})
-         x = calc((int(age),int(sex),int(cp),int(trestbps),int(chol),int(fbs),int(restecg),int(thalach),int(exang),float(oldpeak),int(slope),int(ca),int(thal)))
-         if x==0:
-                res="You may not have any heart disease,But maintain good health :)"
-         else:
-                res="You have the heart disease ,maintain good health!!"
          return render_template('predict.html',res=res)
         
     return render_template('predict.html',res="")
@@ -74,7 +75,7 @@ def reg():
     if request.method == "POST":
         user = request.form.get("fullname")
         email = request.form.get("email")
-        
+        phone = request.form.get("Phone")
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
         
@@ -91,7 +92,7 @@ def reg():
             return render_template('index.html',message=message)
         else:
             hashed = bcrypt.hashpw(password2.encode('utf-8'), bcrypt.gensalt())
-            user_input = {'name': user, 'email': email, 'password': hashed}
+            user_input = {'name': user, 'email': email, 'password': hashed,'phone':phone}
             records.insert_one(user_input)
             
             user_data = records.find_one({"email": email})
@@ -153,7 +154,7 @@ def logout():
 @app.route("/download")
 def hell():
         feed=records.find_one({"email": session['email']}) 
-        feed=feed['data']
+        feed1=feed['data']
         print(feed)  
         pdf = FPDF()
         pdf.add_page()
@@ -161,15 +162,34 @@ def hell():
         pdf.set_font('Times','B',14.0) 
         pdf.cell(page_width, 0.0, 'Diagnosis Report', align='C')
         pdf.ln(10)
+        pdf.cell(page_width, 0.0, '- Contact Information -', align='C')
         pdf.set_font('Times','',12.0) 
         col_width = page_width/6
         pdf.ln(1)
         th = pdf.font_size
-        for row in feed:
-            #  pdf.cell(col_width, th, "Date: ",align="L")
-            # #  print(row['date'])
-            #  pdf.cell(col_width, th, row['date'].date(),align="R")
-            #  pdf.ln(th)
+        pdf.cell(col_width, th, "Name: ",align="L")
+        pdf.cell(col_width, th, feed['name'],align="R")
+        pdf.ln(th)
+        pdf.cell(col_width, th, "Email: ",align="L")
+        pdf.cell(col_width, th, feed['email'],align="R")
+        pdf.ln(th)
+        pdf.cell(col_width, th,"Phone Number: ",align="L")
+        pdf.cell(col_width, th, feed['phone'],align="R") 
+        pdf.ln(th)
+        pdf.cell(page_width, 0.0, '- end -', align='C')  
+        pdf.ln(th)
+        pdf.ln(1)
+        pdf.ln(2)
+        i=1
+        for row in feed1:
+             pdf.ln(th)
+             pdf.ln(th) 
+             pdf.cell(page_width, 0.0,str(i)+". Report", align='C') 
+             pdf.ln(th)            
+             pdf.cell(col_width, th, "Date&Time: ",align="L")
+             pdf.ln(th)
+             pdf.cell(col_width, th, row['date'],align="L")
+             pdf.ln(th)
              pdf.cell(col_width, th, "Age: ",align='L')
              pdf.cell(col_width, th, row['age'],align='R')
              pdf.ln(th)
@@ -216,14 +236,21 @@ def hell():
              pdf.ln(th)
              pdf.cell(col_width, th, row['thal'],align='R')
              pdf.ln(th)
+             pdf.cell(col_width,th,"Result: ",align="L")
              pdf.ln(th)
+             pdf.cell(col_width,th,row['res'],align="R")
+             pdf.ln(th)
+             pdf.ln(th)
+             i+=1
+             pdf.cell(page_width, 0.0, '- end of report -', align='C')
+             pdf.ln(th)  
         pdf.ln(2)
         pdf.ln(th)	
         pdf.set_font('Courier', '', 12)	    
         pdf.ln(th)	
         pdf.ln(10)	
         pdf.set_font('Times','',10.0) 
-        pdf.cell(page_width, 0.0, '- end of report -', align='C')    
+        pdf.cell(page_width, 0.0, '- © ML heart predictor -', align='C')    
         response = make_response(pdf.output(dest='S').encode('latin-1'))
         response.headers.set('Content-Disposition', 'attachment;filename= Diagnosis.pdf')
         response.headers.set('Content-Type', 'application/pdf')

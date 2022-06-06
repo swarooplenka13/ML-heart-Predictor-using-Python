@@ -155,6 +155,17 @@
             display: block;
             margin-top: 1em;
         }
+        @media only screen and (min-width:400px) and (max-width:1030px){
+          footer{
+              position: relative;
+              top: 33em;
+          }
+          .card{
+              margin-top: 25em;
+              left: 18%;
+              
+          }
+    }
     </style>
 </head>
 
@@ -162,7 +173,7 @@
 
     {% extends "base.html" %}
     <br>
-    {% block title %}Login System{% endblock %}
+    {% block title %}Register Here{% endblock %}
 
     {% block content %}
 
@@ -195,6 +206,13 @@
                 </div>
                 <br> <br>
                 <div class="input-group">
+                    <input name="Phone"  id="InputEmail" placeholder="Enter Phone Number">
+                    <label for="Phone">
+                        Phone Number
+                    </label>
+                </div>
+                <br> <br>
+                <div class="input-group">
                     <input type="password" name="password1" id="InputPassword"
                         placeholder="password">
                     <label for="password1">
@@ -211,6 +229,7 @@
                 </div>
                 <span class="space"></span>
                 <button type="submit" id="submit">Register</button>
+                <div class="al" style="margin-top: 7px;"><a href="/login">Already have a account?</a></div>
             </form>
         </div>
     </div>

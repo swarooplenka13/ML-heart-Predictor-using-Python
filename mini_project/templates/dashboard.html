@@ -1,6 +1,7 @@
 <html>
-    <head>
-      <style>
+
+<head>
+    <style>
         .foot {
             position: relative;
             top: 30em;
@@ -16,9 +17,10 @@
             height: 13em;
             overflow: hidden;
             position: relative;
-            top:3em;
+            top: 3em;
 
         }
+
         .h {
             margin-top: 4em;
             margin-left: 1em;
@@ -26,66 +28,91 @@
             display: flex;
             justify-content: space-between;
         }
-        .boo{
+
+        .boo {
             position: relative;
-            bottom:30em;
-            margin-left:70em;
+            bottom: 30em;
+            margin-left:55em;
         }
-        .boo >a{
+
+        .boo>a {
             text-decoration: none;
             border: 2px solid blue;
             padding: 15px;
             border-radius: 10px;
         }
-        .boo >a:hover{
+
+        .boo>a:hover {
             border-color: red;
             color: red;
             font-weight: bold;
         }
-        .imglog >img{
+
+        .imglog>img {
             height: 50em;
             width: 50em;
             position: relative;
-            left:5em;
+            left: 5em;
         }
-        .place{
+
+        .place {
             position: relative;
-            top:1.5em;
-            right:17em;
+            top: 1.5em;
+            right: 12em;
             float: right;
             font-size: x-large;
         }
-        .pa{
+
+        .pa {
             position: relative;
-            bottom:40rem;
+            bottom: 40rem;
         }
-        .sp{
+
+        .sp {
             position: relative;
-            bottom:7rem;
+            bottom: 7rem;
         }
-        .mv{
+
+        .mv {
             position: relative;
             bottom: 22em;
         }
-        .ms{
+
+        .ms {
             height: 40vh;
         }
-      </style>
-    </head>
-    <body>
-        <div class="ms">
-            {% extends "base1.html" %}
-            {% block title %}Youv'e logged in {% endblock %}
-            
-            {% block content %}
-            <div class="place">
-                <p>Hello  {{name}}</p>
-            </div>
-            <div class="imglog">
-                <img src="static/medicine.svg" alt="" srcset="">
-            </div>
+    @media only screen and (min-width:400px) and (max-width:1030px){
+        .pa{
+            margin-bottom: 2em;
+        }
+        .boo{
+             top: 1em;
+             right: 50em;
+             width: 70%;
+             height: 50%;
+        }
+        .ext{
+            position: relative;
+            bottom: 10vh;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="ms">
+        {% extends "base1.html" %}
+        {% block title %}Dashboard {% endblock %}
+
+        {% block content %}
+        <div class="place">
+            <p>Hello {{name}}</p>
+        </div>
+        <div class="imglog">
+            <img src="{{ url_for('static',filename='medicine.svg')}}" alt="" srcset="">
+        </div>
         <div class="pa boo">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi, veritatis. Molestiae error dignissimos culpa quo, magni, amet repellat eveniet officiis sapiente aliquam cupiditate commodi a doloribus laudantium? Cumque cupiditate maiores ad quos ducimus dignissimos provident modi suscipit cum sed. Sequi neque quaerat aperiam, sunt non quis aut excepturi doloremque officiis.
+            The term “heart disease” is often used interchangeably with the term “cardiovascular disease”. Cardiovascular disease generally refers to conditions that involve narrowed or blocked blood vessels that can lead to a heart attack, chest pain (angina) or stroke,Heart disease describes a range of conditions that affect your heart. Diseases under the heart disease umbrella include blood vessel diseases, such as coronary artery disease, heart rhythm problems (arrhythmias) and heart defects you’re born with (congenital heart defects), among others.
         </div>
         <br> <br>
         <div class="sp">
@@ -93,20 +120,25 @@
                 <a href="/predictheartdisease">Get Prediction</a>
             </div>
             <br> <br>
-            <div class="boo">
-                <a href="/download">Download Detailed Reports</a>
+            <div class="ext">
+                <div class="boo" >
+                    <a href="/download">Download Detailed Reports</a>
+                </div>
+
             </div>
         </div>
         <div class="mv">
             <footer>
                 <div class="h">
                     <h1 style="color:white; font-size:x-large;">Heart Disease Predictor</h1>
-                    <h2 style="color:white;"><a href="/logout" class="active" style="color:white; text-decoration:none; font-size:x-large;">Logout</a></h2>
+                    <h2 style="color:white;"><a href="/logout" class="active"
+                            style="color:white; text-decoration:none; font-size:x-large;">Logout</a></h2>
                     <h1 id="d" style="color:white; font-size:x-large;">All rights reserved &copy; 2022.</h1>
                 </div>
             </footer>
         </div>
         {% endblock %}
     </div>
-    </body>
+</body>
+
 </html>
